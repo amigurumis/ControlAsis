@@ -1,0 +1,73 @@
+DataGrid {
+   headerColors: #F8F8F8, #E3E1E1;
+   rollOverColor: #D0F0F2;
+   selectionColor: #E7E7E7;
+   headerStyleName: "mydataGridHeaderStyle";
+	verticalScrollBarStyleName: dataGridVerticalScrollBar;
+}
+
+.mydataGridHeaderStyle {
+   color: #2E2EFE;
+   fontFamily: Arial;
+   fontSize: 11;
+	fontWeight: bold;
+	textAlign: center;
+}
+HBox
+{
+/* 	borderStyle: solid; */
+}
+
+
+Panel {
+   borderStyle: solid;
+   borderAlpha: 1;
+   borderThickness: 0;
+   borderThicknessLeft: 0;
+   borderThicknessTop: 0;
+   borderThicknessBottom: 2;
+   borderThicknessRight: 10;
+   cornerRadius: 5;
+   headerHeight: 26;
+   highlightAlphas: 0, 0;
+   headerColors:  #2E2EFE, #2E2EFE;
+   dropShadowEnabled: true;
+   titleStyleName: "mypanelTitle";
+   fontWeight:"bold" ;
+   }
+
+.barraTitulo
+ {
+ 	stroke-color: #2E2EFE;
+ 	shadow-color: #2E2EFE;
+ }
+ .labelFiltros{
+ 	color: #c60000;
+ 	fontWeight:"normal";
+ 	fontSize:"11";
+ 	textAlign:"center";
+ 	
+ }
+ 
+ .labelNegrita{
+ 	color: #c60000;
+ 	fontWeight:"bold";
+ 	fontSize:"11";
+ 	textAlign:"center";
+ 	
+ }
+ 
+ .Btn{
+ 	color: #E00000;
+  	fontWeight:"normal";  
+  	paddingLeft:"10";
+
+ 	
+ }
+
+.mypanelTitle {
+   color: #ffffff;
+}
+.dataGridVerticalScrollBar
+{
+}

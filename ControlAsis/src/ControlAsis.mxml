@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>	
+<mx:Application  width="95%" height="95%" xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" 
+	backgroundGradientColors="[#FFFFFF, #FFFFFF]" 
+	initialize=" {loadConfigFile()}"
+	pageTitle="Control Asistencia" 
+	xmlns:components="Varios.*"
+	 horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	xmlns:mxeffects="com.adobe.ac.mxeffects.*"
+	xmlns:control="com.ControlAsis.control.*" 
+	xmlns:view="com.ControlAsis.view.*" 
+	creationComplete="{Remueve()}"
+>
+	
+<mx:Style source="assets/styles.css"/>
+<mx:Style source="assets/CollapsibleAccordionStyle.css" />
+	
+	<mx:Script>
+		<![CDATA[			
+			import mx.containers.VBox;
+			import cl.larrainvial.comun.componentes.*;		
+			import com.ControlAsis.events.*;
+			import com.ControlAsis.model.*;
+			import com.ControlAsis.vo.*;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.events.FaultEvent;
+			import com.ControlAsis.bussiness.*;	
+			import mx.collections.ListCollectionView;			
+							
+			public var alerta:AlertaCustom;
+			public var model:ModelLocator=ModelLocator.getInstance();
+			public var serviciosCargados:Boolean=false;
+			public var servicio:Services;
+			
+//*****************************************************************************************************					
+		private function loadConfigFile():void
+		{
+			httpServicios.send();					
+		}		
+//*****************************************************************************************************				
+		
+		public function Remueve():void
+		{
+			//this.tn.removeAllChildren();
+		}
+				
+//*****************************************************************************************************				
+		private function CargarHTTPService(event:ResultEvent):void
+		{
+			var servicios:XMLList=event.result..WebService;
+			alerta=new AlertaCustom();
+			var config:ConfigVO;
+			for each(var nodeWS :XML in servicios){
+					config = new ConfigVO();
+					config.fill = nodeWS;
+					model.servicesCollection.addItem(config);}
+					var serviceLoaded :Services = cargarServicios();
+				if(serviceLoaded){
+					
+					
+				}else{
+					alerta = new AlertaCustom();
+					alerta.show("Error en la carga de servicios. \nPor favor recargue la página", "Error", AlertaCustom.FATAL, "Falló la lectura del archivo configurador de Servicios Web");
+				}
+		}
+		
+
+//*****************************************************************************************************				
+		private function cargarServicios():com.ControlAsis.bussiness.Services
+			{
+				servicio = new Services();
+				serviciosCargados = true;
+				
+				return servicio;
+			}
+
+		
+//*****************************************************************************************************					
+			private function errorHttpService(event:FaultEvent):void
+			{
+				var alerta :AlertaCustom = new AlertaCustom();
+				alerta.show("Error en carga de archivo configurador de WebService", "Client Error", AlertaCustom.FATAL, event.fault.getStackTrace());
+			}
+
+		
+//*****************************************************************************************************						
+				public function set verificaCounter(i:int):void
+			{
+				if (i<=0){
+					if(i < 0) {
+						var alerta :AlertaCustom = new AlertaCustom();
+						alerta.show("Contador Negativo", "Atención", AlertaCustom.FATAL, "No se está controlando correctamente el contador de eventos");
+						model.counter = 0;
+					}
+					//this.desbloquear();
+				}
+			}
+
+		
+//*****************************************************************************************************					
+			public function desbloquear():void
+			{
+				this.removeChild(this.getChildByName("_VentanaCargando"));
+			}
+			
+
+		
+//*****************************************************************************************************					
+				public function bloquear(msg:String = "Cargando"):void
+			{
+				var canvas : Cargando = new Cargando(this.width,this.height);
+				canvas.Mensaje = msg;
+				canvas.x =0;
+			 	canvas.y =0;
+			 	canvas.id = "_Cargando";
+			 	canvas.name = "_VentanaCargando";
+			 	this.addChild(canvas);
+			}
+
+		
+//*****************************************************************************************************					
+			
+			// ESCUCHA CAMBIO DE PERFIL //
+				public function set VerificaCargaPerfil(i:Boolean):void{
+				if (i==true){
+					//CargaMenu();
+				}
+			}	
+			
+
+		
+//*****************************************************************************************************	
+/* private function onVerEstadoOrdenes():void{
+				rotate.siblings = [frmEstadoOrdenes];
+				rotate.direction = "LEFT";
+				//model.TituloPrincipal='Metas comerciales canal CNS'
+				
+				//model.TituloSecundario='Listado Metas'
+				vstFondosAcciones.selectedChild = frmEstadoOrdenes;
+				cAccMenu.close = true;
+			}
+					
+			private function onVerIngresoOrdenes():void{
+				
+				rotate.siblings = [frmIngresoOrdenes];
+				rotate.direction = "LEFT";
+				//model.TituloPrincipal='Metas comerciales canal CNS'
+				//model.TituloSecundario='Ingreso Metas'
+				vstFondosAcciones.selectedChild = frmIngresoOrdenes;
+				cAccMenu.close = true;
+			}		 */		
+					]]>
+	</mx:Script>
+	<mx:Binding source="{model.counter}" destination="verificaCounter"/>
+ 
+	<mx:VBox width="100%" height="100%">
+	<mx:HBox width="100%" height="100%">
+	 	  <mx:ButtonBar id="buttonBar" direction="vertical" dataProvider="{viewStack}" themeColor="haloOrange" width="70" height="143" />
+
+        <mx:ViewStack id="viewStack" backgroundColor="white"    width="100%"  height="100%">
+        <mx:Canvas id="IngresoE"  toolTip="Ingreso de Establecimientos" icon="@Embed('assets/IngresoOrd.png')"> <view:VwIngresoEstablecimientos  backgroundColor="#FFFFFF"/></mx:Canvas>
+        <mx:Canvas id="IngresoA"  toolTip="Ingreso de Alumnos" icon="@Embed('assets/IngresoOrd.png')"> <view:VwIngresoAlumnos  backgroundColor="#FFFFFF"/></mx:Canvas>
+      
+	   </mx:ViewStack>
+    </mx:HBox>
+</mx:VBox>
+ 	
+
+	  	
+    	<mx:HTTPService
+		id="httpServicios"
+		url="./config/configWS.xml"
+		result="CargarHTTPService(event)"
+		fault="errorHttpService(event)"
+		useProxy="false"
+		resultFormat="e4x"/>
+	 
+    
+</mx:Application>

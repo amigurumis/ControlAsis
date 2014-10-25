@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TextInput xmlns:mx="http://www.adobe.com/2006/mxml"
+	maxChars="5" 
+	width="45"
+	preinitialize="preInit()"
+	restrict=":0-9" change="onChange()">
+	<mx:Metadata>
+	[Event(name="timeChange")]
+	</mx:Metadata>
+	<mx:Script>
+	<![CDATA[
+	import mx.formatters.DateFormatter;
+	import com.ControlAsis.model.ModelLocator;
+	private var _hours:Number;
+	private var _minutes:Number;
+	public var model:ModelLocator = ModelLocator.getInstance();			
+	
+	private var _minHour:Number = 0;
+	private var _minMinute:Number = 0;
+	private var dateFormater:DateFormatter = new DateFormatter();
+
+//*****************************************************************************************************				
+	private function preInit():void{
+		dateFormater.formatString = "JJ:NN"; 
+	}
+//*****************************************************************************************************				
+	public function set date(date:Date):void{
+		_hours = date.hours;
+		_minutes = date.minutes;
+	this.text = asText;
+	}
+//*****************************************************************************************************				
+	public function get hours():Number{
+	return _hours;
+	}
+//*****************************************************************************************************				
+	public function set hours(hours:Number):void{
+	_hours = hours;
+	this.text = asText;
+	}
+//*****************************************************************************************************				
+	public function get minutes():Number{
+	return _minutes;
+	}
+//*****************************************************************************************************				
+	public function set minutes(minutes:Number):void{
+	_minutes = minutes;
+	this.text = asText;
+	}
+//*****************************************************************************************************				
+	public function set minHour(minHour:Number):void{
+	_minHour = minHour; 
+	}
+//*****************************************************************************************************				
+	public function set minMinute(minMinute:Number):void{
+	_minMinute = minMinute; 
+	}
+//*****************************************************************************************************				
+	public function get asDate():Date{
+		var aDate:Date = new Date();
+		aDate.hours = _hours;
+		aDate.minutes = _minutes;
+		aDate.seconds = 0;
+		aDate.milliseconds = 0;
+		aDate.fullYear = 0;
+		aDate.month = 0;
+		aDate.date = 0;
+	
+	return aDate; 
+	}
+//*****************************************************************************************************				
+	public function get asText():String{
+		var aDate:Date = new Date();
+		aDate.hours = _hours;
+		aDate.minutes = _minutes;
+		var formatedDate:String = dateFormater.format(aDate);
+	return formatedDate; 
+	}
+//*****************************************************************************************************			
+	
+	private function onChange():void{
+		var errorStr:String = "La Hora no tiene el formato correcto (H:MM)";  
+		var idx:int = text.indexOf(":");
+	if(idx<=0){	
+		model.counterHora = 1;	
+		errorString = errorStr;
+	}
+	else{
+		var min:String  = text.substr(idx+1);
+		var hour:String = text.substr(0,idx);		
+		var ok:Boolean = false; 
+		
+	if(min!="" && hour!="" && min.length==2 ){
+		var minutes:Number = Number(min);
+		var hours :Number = Number(hour);
+	
+	if( !isNaN(minutes) && !isNaN(hours)){
+		if(minutes>=0 && minutes<=59 && hours>=0 && hours<=23 ){	
+			if(hours>_minHour || (hours==_minHour && minutes>_minMinute)){
+				_minutes = minutes;
+				_hours   = hours;
+				ok = true;
+				dispatchEvent(new Event("timeChange"));
+	}
+	else{
+		var nextMin:Number = _minMinute+1;
+		var nextHour:Number = _minHour;
+	if(nextMin>59){
+			nextHour++;
+			nextMin=0; 
+	}
+	var aDate:Date = new Date();
+	aDate.hours = nextHour;
+	aDate.minutes = nextMin;
+	
+	var formatedDate:String = dateFormater.format(aDate);
+	errorStr = "La Hora mimima es " +formatedDate;  
+	model.counterHora = 1;	
+	}
+	}
+	} 
+	}
+	if(ok){
+	errorString = "";
+	model.counterHora = 0;	
+	}
+	else{
+	errorString = errorStr; 
+	model.counterHora = 1;	
+	} 
+	} 
+	} 
+	]]>
+</mx:Script>
+
+</mx:TextInput>

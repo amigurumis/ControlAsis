@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<configWS>
+	<WebService>
+		 <id>WSControlAsis</id>
+		 <wsdl> http://webservices.desarrollo.larrainvial.com/WSControlAsis/WSControlAsis.asmx?wsdl</wsdl>		      
+		 <uri> http://webservices.desarrollo.larrainvial.com/WSControlAsis/WSControlAsis.asmx</uri>
+    </WebService>
+	
+</configWS>

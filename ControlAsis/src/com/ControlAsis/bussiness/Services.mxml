@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cairngorm:ServiceLocator
+	xmlns:cairngorm="com.adobe.cairngorm.business.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.FaultEvent;
+			import com.ControlAsis.model.ModelLocator;
+						
+			[Bindable]
+			public var model:ModelLocator = ModelLocator.getInstance();
+			
+			private function faultHandler(event:FaultEvent):void
+			{
+			Alert.show("Error con la Aplicación, favor comunicarse con el Administrador", "Información")
+				
+			}
+		]]>
+	</mx:Script>
+		
+	
+	
+
+	 <mx:WebService
+	 useProxy="false"
+	 id="WSControlAsis"
+	 showBusyCursor="true"
+	 wsdl="{model.servicesCollection.getItemAt(0).wsdl}" 
+	 endpointURI="{model.servicesCollection.getItemAt(0).uri}" 	
+	 concurrency="multiple" 
+	 fault="faultHandler(event)"/>	 
+	 
+	 
+	 
+	</cairngorm:ServiceLocator>

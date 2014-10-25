@@ -1,0 +1,6 @@
+<Parametros>	
+	<URL>
+		<URLExportarExcel URL="http://webservices.larrainvial.com/WSGenericReport/ExportBinaryStream.aspx"/>
+		<URLExportaPDF URL="http://webservices.larrainvial.com/WSPortalAGF/InformePort.aspx"/> 
+	</URL>	
+</Parametros>

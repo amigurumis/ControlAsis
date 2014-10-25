@@ -1,0 +1,230 @@
+/* CSS file */
+
+.cornerBox{
+	border-style: solid;
+	border-color: #cfcfcf;
+	drop-shadow-color: #c60000;
+	drop-shadow-enabled: true;
+	corner-radius: 10;
+	shadow-direction: right;
+	background-color: #ffffff;
+}
+
+.cornerBoxGreen{
+	border-style: solid;
+	border-color: #cfcfcf;
+	drop-shadow-color: #cefdd0;
+	drop-shadow-enabled: true;
+	corner-radius: 10;
+	shadow-direction: right;
+	background-color: #ffffff;
+}
+
+
+.gradientCanvasStyle{
+   fillAlphas: 0.5, 0.5, 0.5, 0.5;
+   /*fillColors: #111111, #999999,  #333333, #AAAAAA;*/
+   fillColors: #c60000, #999999,  #333333, #AAAAAA;
+   cornerRadius: 20;
+}
+
+.styleGRP{
+	font-family: font1;
+	font-size: 15;
+	color: #666666;
+}
+
+.styleF1{
+	font-family: f1;
+	font-size: 13;
+}
+
+.styleF1White{
+	font-family: f1;
+	font-size: 13;
+	color: #ffffff;
+}
+
+ Panel{
+   borderAlpha: 1;
+   borderThicknessLeft: 0;
+   borderThicknessTop: 0;
+   borderThicknessBottom: 0;
+   borderThicknessRight: 0;
+   cornerRadius: 0;
+   headerHeight: 21;
+   backgroundAlpha: 1;
+   highlightAlphas: 0.66, 0;
+   headerColors: #cc0000, #cc0000;
+   titleStyleName: "mypanelTitle";
+   shadowDistance: 7;
+   shadowDirection: right;
+   statusStyleName: panelStatus;
+}
+ 
+/*TitleWindow
+{
+	titleStyleName: styleF1White;
+}*/
+
+TextInput
+{
+	cornerRadius: 0;
+	borderStyle: solid;
+	height : 16;
+}
+
+Application {
+   	fontFamily: myFont;
+  	themeColor: #c60000;
+}
+
+
+.botonAccion{
+
+   cornerRadius: 5;
+   textIndent: 0;
+   paddingLeft: 5;
+   paddingRight: 5;
+   highlightAlphas: 0.66, 0;
+   fillAlphas: 1, 1, 1, 1;
+   fillColors: #efefef, #efefef, #ff8080, #ff8080;
+   textRollOverColor: #ffffff;
+   textSelectedColor: #ffffff;
+   themeColor: #cc0000;
+   fontSize: 11;
+   text-align: left;
+   padding-bottom: 10;
+   padding-top: 10;
+/*    cornerRadius: 0;
+   textIndent: 0;
+   paddingLeft: 5;
+   paddingRight: 0;
+   font-family: Arial;
+   fontSize: 12;
+   text-align: left; */
+}
+
+DataGrid
+ {
+ 	header-colors:#c60000, #cfcfcf;
+ 	header-style-name:textoB;
+ 	horizontal-grid-line-color:#dfdfdf;
+ 	horizontal-grid-lines:true;
+ 	text-align:center;
+ }
+ 
+.textoB
+ {
+ 	 font-size: 10;
+ 	 color:white;
+ }
+  
+.tiDisabled{
+ 	background-color: #efefef;
+ 	border-style: none;
+ }
+ 
+ToolTip {
+   cornerRadius: 6;
+   backgroundColor: #ff0000;
+   color: #ffffff;
+   textAlign: center;
+   fontSize: 12;
+   fontWeight: bold;
+   font-family: myFont;
+}
+
+.lblLeyenda{
+  background-color:#DCDCDC;
+  background-alpha:.5;
+  font-size:10;
+}
+
+.label{
+	 color: black;
+	 font-family: Arial;
+	 fontSize: 10;
+}
+
+
+LineChart{
+	font-family: EmbeddedArial;
+}
+
+ TabNavigator {
+    /*backgroundColor: #BD0000;*/
+    cornerRadius: 0;           
+    tabStyleName: "MyTabs";
+    /*firstTabStyleName: "MyFirstTab";
+    lastTabStyleName: "MyLastTab";*/
+    selectedTabTextStyleName: "MySelectedTab";
+    padding-top:10px;
+    horizontal-gap: 10;            
+    /*fillAlphas: 1.0, 1.0, 1.0, 1.0;
+    fillColors: #BD0000, #BD0000, #BD0000, #BD0000;*/
+    fontSize: 12;
+    fontFamily: Tahoma, Verdana, Helvetica, Arial, sans-serif;
+    
+}
+
+.MyTabs {
+    /*backgroundColor: #BD0000;*/
+    cornerRadius: 10;
+    color: #FFFFFF;   
+    fillAlphas: 1.0, 1.0, 1.0, 1.0; 
+    fillColors: #BD0000, #BD0000, #BD0000, #BD0000;   
+    fontSize: 12;  
+    fontFamily: Tahoma, Verdana, Helvetica, Arial, sans-serif; 
+    up-icon:Embed(source="assets/Iconos/iconoLarrainVialBlanco.png");
+  	over-icon:Embed(source="assets/Iconos/iconoLarrainVialBlanco.png");
+  	down-icon:Embed(source="assets/Iconos/iconoLarrainVialBlanco.png");
+  	disabled-icon:Embed(source="assets/Iconos/iconoLarrainVialBlanco.png");   
+               
+}
+
+/*.MyFirstTab,
+.MyLastTab {
+    backgroundColor: #BD0000;
+    cornerRadius: 10;
+    color: #FFFFFF;
+    textRollOverColor: black;
+    fillAlphas: 1.0, 1.0, 1.0, 1.0;
+    fillColors: #BD0000, #BD0000, #BD0000, #BD0000;
+    fontSize: 12;
+    fontFamily: Tahoma, Verdana, Helvetica, Arial, sans-serif;;
+}*/
+
+.MySelectedTab {
+    backgroundColor: #000000;
+    color: #BD0000;            
+    textRollOverColor: black;
+    fillAlphas: 1.0, 1.0, 1.0, 1.0;
+    fillColors: #000000, #000000, #000000, #000000;
+    fontSize: 12;
+    fontFamily: Tahoma, Verdana, Helvetica, Arial, sans-serif;             
+}
+
+DropDownFilterEditorBase{
+	border-style:		solid;
+	background-alpha: 	1;
+	background-color:	white;
+	drop-shadow-enabled: true;
+	padding-bottom:		5;
+	padding-left:		5;
+	padding-right:		5;
+	padding-top:		5;
+}
+
+DropDownFilterHeaderRenderer{
+	padding-bottom:		0;
+	padding-left:		5;
+	padding-right:		0;
+	padding-top:		0;
+	horizontal-gap:		0;
+	vertical-align:		middle;
+	filter-button-style-name: dataGridFilterButton;
+	filter-button-active-style-name: dataGridFilterButtonActive;
+}
+
+

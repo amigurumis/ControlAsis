@@ -1,0 +1,58 @@
+@font-face {
+   src: local("Arial");
+   fontFamily: Tahoma;
+   fontWeight: normal;
+}
+ 
+@font-face {
+   src: local("Arial");
+   fontFamily: HelveticaBold;
+   fontWeight: bold;
+}
+
+/*global {
+   fontFamily: Tahoma, Verdana, Helvetica, Arial, sans-serif;
+   fontSize: 11px;
+}*/
+
+.drawerButton {
+   fontFamily: HelveticaBold;
+   fontSize: 12;
+   textAlign: left;
+   fillAlphas: 1.0, 1.0;
+   /*fillColors: #111111, #999999,  #333333, #AAAAAA;*/
+   fillColors: #c60000, #999999,  #333333, #AAAAAA;
+   color: #FFFFFF;
+   textRollOverColor: #FFFFFF;
+}
+
+.drawerAccordion {
+   borderColor: #CCCCCC;
+   borderThickness: 2;
+   headerStyleName: drawerAccordionHeader;
+}
+
+.drawerAccordionHeader {
+   fillAlphas: 1.0, 1.0, 0.82, 0.82;
+   fillColors: #c60000, #999999, #333333, #AAAAAA;
+/*   fillColors:#2588D1, #015194, #015194, #015194;*/
+   color: #FFFFFF;
+   cornerRadius: 4;
+   paddingLeft: 10;
+   fontFamily: HelveticaBold;
+   fontSize: 12;
+}
+
+.drawerCloseRight {
+  up-skin:Embed(source="assets/closeaccordion2.png");
+  over-skin:Embed(source="assets/closeaccordion2.png");
+  down-skin:Embed(source="assets/closeaccordion2.png");
+  disabled-skin:Embed(source="assets/closeaccordion2.png");
+}
+
+.drawerCloseLeft {
+  up-skin:Embed(source="assets/closeaccordion2.png");
+  over-skin:Embed(source="assets/closeaccordion2.png");
+  down-skin:Embed(source="assets/closeaccordion2.png");
+  disabled-skin:Embed(source="assets/closeaccordion2.png");
+}
